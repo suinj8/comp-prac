@@ -15,27 +15,44 @@ import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import CameraIcon from "@material-ui/icons/Camera";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CardActionArea, MenuItem, Menu } from "@mui/material";
+import Move from "./Move";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://www.jbnu.ac.kr/kor/">
+        Jeonbuk National University
       </Link>{" "}
+      All rights reserved.
       {new Date().getFullYear()}
       {"."}
     </Typography>
   );
 }
 
-const cards = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-];
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 const theme = createTheme();
 
 export default function Album() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClick2 = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleClose2 = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -47,47 +64,82 @@ export default function Album() {
           </Typography>
         </Toolbar>
       </AppBar>
+
+      <AppBar position="relative">
+        <Toolbar>
+          <Button
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+            color="inherit"
+            ml={"10px"}
+          >
+            소식
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem onClick={handleClose}>소개</MenuItem>
+            <MenuItem onClick={handleClose}>연구</MenuItem>
+            <MenuItem onClick={handleClose}>구성원</MenuItem>
+            <MenuItem onClick={handleClose}>소식</MenuItem>
+            <MenuItem onClick={handleClose}>지원하기</MenuItem>
+          </Menu>
+
+          <Button
+            id="basic-button2"
+            aria-controls={open ? "basic-menu2" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick2}
+            color="inherit"
+          >
+            언론보도
+          </Button>
+          <Menu
+            id="basic-menu2"
+            anchorEl={anchorEl2}
+            open={open}
+            onClose={handleClose2}
+            MenuListProps={{
+              "aria-labelledby": "basic-button2",
+            }}
+          >
+            <MenuItem onClick={handleClose2}>소식통</MenuItem>
+            <MenuItem onClick={handleClose2}>공지사항</MenuItem>
+            <MenuItem onClick={handleClose2}>언론보도</MenuItem>
+          </Menu>
+        </Toolbar>
+      </AppBar>
+
+      <Move />
       <main>
         {/* Hero unit */}
         <Box
           sx={{
             bgcolor: "background.paper",
-            pt: 8,
-            pb: 4,
+            pt: 2,
+            pb: 2,
           }}
         >
           <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >
-              Album layout
-            </Typography>
-            <Typography
-              variant="h5" // 글씨 크기
-              align="center"
-              color="text.secondary" // 글씨 진하기
-              paragraph // true이면 margin bottom을 가짐
-            >
-              Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely.
-            </Typography>
             <Stack
               sx={{ pt: 4 }}
               direction="row" // column으로 할 시 위 아래로 배치
               spacing={2} // 자식 컴포넌트들 사이를 띄어놓음
               justifyContent="center"
-            >
-              <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
-            </Stack>
+            ></Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 5 }} maxWidth="md">
+        <Container sx={{ py: 5 }} fixed>
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
@@ -99,38 +151,36 @@ export default function Album() {
                     flexDirection: "column",
                   }}
                 >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      pt: "45%",
-                    }}
-                    image="https://source.unsplash.com/random"
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h1">
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
-                  </CardActions>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      sx={{
+                        pt: "45%",
+                      }}
+                      image="https://source.unsplash.com/random"
+                      alt="random"
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h5" component="h1">
+                        Heading
+                      </Typography>
+                      <Typography>
+                        This is a media card. You can use this section to
+                        describe the content.
+                      </Typography>
+                    </CardContent>
+                    <CardActions></CardActions>
+                  </CardActionArea>
                 </Card>
               </Grid>
             ))}
           </Grid>
         </Container>
       </main>
-
       {/* Footer */}
       <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
-        <Typography variant="h5" align="center" gutterBottom>
-          JBNU
+        <Typography variant="h6" align="center" color="text.secondary">
+          JBNU AI Center
         </Typography>
         <Typography
           variant="subtitle1"
@@ -138,7 +188,7 @@ export default function Album() {
           color="text.secondary"
           component="p"
         >
-          JBNU
+          전북대학교
         </Typography>
         <Copyright />
       </Box>
