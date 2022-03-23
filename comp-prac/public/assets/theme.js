@@ -5,7 +5,7 @@ const primaryColor = purple[600];
 const secondaryColor = purple[50];
 const dangerColor = purple[100];
 
-const theme = createTheme({
+const customTheme = createTheme({
   palette: {
     primary: {
       main: primaryColor,
@@ -19,4 +19,6 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export default customTheme;
+
+// 전체를 ThemeProvider로 감싼 뒤 prop으로 만든 테마를 보낸다. ( <ThemeProvider theme={customTheme}> )
