@@ -13,10 +13,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
-import CameraIcon from "@material-ui/icons/Camera";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CardActionArea, MenuItem, Menu } from "@mui/material";
-import Move from "./Move";
 
 function Copyright() {
   return (
@@ -58,8 +56,7 @@ export default function Album() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" color="inherit" noWrap ml={2}>
             언론보도
           </Typography>
         </Toolbar>
@@ -119,8 +116,6 @@ export default function Album() {
           </Menu>
         </Toolbar>
       </AppBar>
-
-      <Move />
       <main>
         {/* Hero unit */}
         <Box
