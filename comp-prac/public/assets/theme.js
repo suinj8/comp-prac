@@ -13,5 +13,10 @@ const theme = createTheme({
     secondary: {
       main: secondaryColor,
     },
+    error: {
+      main: dangerColor,
+    },
   },
 });
+
+export default theme;
