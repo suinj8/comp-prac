@@ -3,7 +3,10 @@ import Header from "../Components/Header";
 const Home = () => {
   return (
     <div>
-      <Header />
+      <header>
+        <Header />
+      </header>
+      <article>본문</article>
     </div>
   );
 };

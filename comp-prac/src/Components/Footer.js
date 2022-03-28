@@ -1,0 +1,36 @@
+import { Typography, Link, Box } from "@mui/material";
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="https://www.jbnu.ac.kr/kor/">
+        Jeonbuk National University
+      </Link>{" "}
+      All rights reserved.
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
+const Footer = () => {
+  return (
+    <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
+      <Typography variant="h6" align="center" color="text.secondary">
+        JBNU AI Center
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        align="center"
+        color="text.secondary"
+        component="p"
+      >
+        전북대학교
+      </Typography>
+      <Copyright />
+    </Box>
+  );
+};
+
+export default Footer;
