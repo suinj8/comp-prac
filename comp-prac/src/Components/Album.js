@@ -1,61 +1,38 @@
 import * as React from "react";
 import {
-  AppBar,
   Card,
   CardActions,
   CardContent,
   CardMedia,
   CssBaseline,
   Grid,
-  Box,
   Typography,
   Container,
-  Link,
   CardActionArea,
   Divider,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Footer from "./Footer";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://www.jbnu.ac.kr/kor/">
-        Jeonbuk National University
-      </Link>{" "}
-      All rights reserved.
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+import { useNavigate } from "react-router-dom";
+import { ArticleContext } from "../App";
 
 const theme = createTheme();
 
 export default function Album() {
+  const navigate = useNavigate();
+  const dummyArticles = React.useContext(ArticleContext);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar
-        position="relative"
-        sx={{
-          bgcolor: "#FFFFFF",
-          height: "50",
-        }}
-      >
-        가위
-      </AppBar>
+
       <Divider />
       <main>
         {/* Hero unit */}
         <Container sx={{ py: 5 }} fixed>
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={3}>
+            {dummyArticles.map((it) => (
+              <Grid item key={it.id} xs={12} sm={6} md={3}>
                 <Card
                   sx={{
                     height: "100%",
@@ -64,22 +41,25 @@ export default function Album() {
                   }}
                 >
                   <CardActionArea>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h1"
+                      sx={{
+                        mt: "7px",
+                        ml: "7px",
+                      }}
+                    >
+                      {it.title}
+                    </Typography>
                     <CardMedia
                       component="img"
-                      sx={{
-                        pt: "45%",
-                      }}
                       image="https://source.unsplash.com/random"
                       alt="random"
+                      onClick={() => navigate(`../article/${it.id}`)}
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
-                      <Typography gutterBottom variant="h5" component="h1">
-                        Heading
-                      </Typography>
-                      <Typography>
-                        This is a media card. You can use this section to
-                        describe the content.
-                      </Typography>
+                      <Typography>{it.content}</Typography>
                     </CardContent>
                     <CardActions></CardActions>
                   </CardActionArea>
