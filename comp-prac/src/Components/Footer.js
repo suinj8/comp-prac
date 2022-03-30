@@ -16,7 +16,7 @@ function Copyright() {
 
 const Footer = () => {
   return (
-    <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
+    <Box sx={{ bgcolor: "#ececec", p: 5 }} component="footer">
       <Typography variant="h6" align="center" color="text.secondary">
         JBNU AI Center
       </Typography>
@@ -26,7 +26,7 @@ const Footer = () => {
         color="text.secondary"
         component="p"
       >
-        전북대학교
+        컴퓨터공학부
       </Typography>
       <Copyright />
     </Box>

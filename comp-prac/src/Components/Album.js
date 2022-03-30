@@ -16,6 +16,8 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import { ArticleContext } from "../App";
 
+import jbnu from "../assets/jbnu.png";
+
 const theme = createTheme();
 
 export default function Album() {
@@ -54,7 +56,7 @@ export default function Album() {
                     </Typography>
                     <CardMedia
                       component="img"
-                      image="https://source.unsplash.com/random"
+                      image={jbnu}
                       alt="random"
                       onClick={() => navigate(`../article/${it.id}`)}
                     />
