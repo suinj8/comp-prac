@@ -23,7 +23,7 @@ const Header = () => {
   };
 
   const clickSideMenu = () => {
-    return <div>안녕안녕 나는 수인이야</div>;
+    return <div>ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</div>;
   };
   return (
     <div>
