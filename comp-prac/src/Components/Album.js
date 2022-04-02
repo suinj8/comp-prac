@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   CssBaseline,
@@ -12,7 +11,6 @@ import {
   Divider,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import { ArticleContext } from "../App";
 
@@ -26,54 +24,48 @@ export default function Album() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
       <Divider />
-      <main>
-        {/* Hero unit */}
-        <Container sx={{ py: 5 }} fixed>
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {dummyArticles.map((it) => (
-              <Grid item key={it.id} xs={12} sm={6} md={3}>
-                <Card
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <CardActionArea>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="h1"
-                      sx={{
-                        mt: "7px",
-                        ml: "7px",
-                      }}
-                    >
-                      {it.title}
-                    </Typography>
-                    <CardMedia
-                      component="img"
-                      image={jbnu}
-                      alt="random"
-                      onClick={() => navigate(`../article/${it.id}`)}
-                    />
-                    <CardContent sx={{ flexGrow: 1 }}>
-                      <Typography>{it.content}</Typography>
-                    </CardContent>
-                    <CardActions></CardActions>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      {/* Footer */}
-      <Footer />
-      {/* End footer */}
+      <Container sx={{ py: 5 }} fixed>
+        <Grid container spacing={4}>
+          {dummyArticles.map((it) => (
+            <Grid item key={it.id} xs={12} sm={6} md={3}>
+              <Card
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <CardActionArea onClick={() => navigate(`../article/${it.id}`)}>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h1"
+                    sx={{
+                      mt: "7px",
+                      ml: "7px",
+                    }}
+                  >
+                    {it.title}
+                  </Typography>
+                  <CardMedia component="img" image={jbnu} alt="random" />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography>{it.content}</Typography>
+                  </CardContent>
+                  <Typography
+                    variant="subtitle2"
+                    component="subtitle1"
+                    color="text.secondary"
+                    sx={{ p: "16px" }}
+                  >
+                    {it.date}
+                  </Typography>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </ThemeProvider>
   );
 }
