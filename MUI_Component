@@ -1,1 +1,10 @@
-123
+```javascript
+<Card
+        sx={{
+          height: "100%",
+          width: "320px",
+          bgcolor: "#0277BD",
+          color: "white",
+        }}
+      >
+```
