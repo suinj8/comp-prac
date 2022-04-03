@@ -19,16 +19,7 @@ import { Button } from "@mui/material";
 너비와 높이는 50%만 padding-left를 5px만큼 주겠다는 의미이다.
 CSS문법과는 약간의 다른점이 있다.
 
-CSS                 React Prop  
-margin              m  
-margin-top          mt  
-margin-right        mr  
-margin-bottom       mb  
-margin-left         ml  
-margin-left, right  mx  
-margin-top, bottom  my  
-padding             p  
-이후 margin과 동일   pt, pr 등등  
+![image](https://user-images.githubusercontent.com/90179555/161439594-5fe5d410-3d21-4994-8b54-75c5a9b937f3.png)
 
 이 외에도 여러가지 사용 가능하다
 fontWeight, display, color, bgcolor, border 등 더 자세한 사항은 링크를 참조
@@ -68,6 +59,7 @@ spacing은 item 컴포넌트들 사이에 공백을 주는 props이다.
 
 https://mui.com/components/grid/
 
+
 ### 3. Stack
 
 Grid와 마찬가지로 자주 쓰이는 레이아웃 컴포넌트이다.
@@ -95,6 +87,7 @@ directions은 기본적으로 column이다. 값을 주지 않으면 사진과 �
 divider로 자식 컴포넌트 간 구분을 확실하게 해줄 수 있다. 
 
 https://mui.com/components/stack/
+
 
 ### 4. Button
 
