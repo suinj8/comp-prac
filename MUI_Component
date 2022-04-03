@@ -1,10 +1,6 @@
 ```javascript
-<Card
-        sx={{
-          height: "100%",
-          width: "320px",
-          bgcolor: "#0277BD",
-          color: "white",
-        }}
-      >
+import jbnu from "../assets/jbnu.png";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Home } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 ```
