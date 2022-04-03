@@ -3,7 +3,6 @@ import { Divider, Grid, Typography } from "@mui/material";
 const SubHeader = () => {
   return (
     <div>
-      <Divider light />
       <Grid container>
         <Grid item xs={1} />
         <Divider orientation="vertical" flexItem />
@@ -14,6 +13,7 @@ const SubHeader = () => {
               bgcolor: "#FFFFFF",
               color: "text.secondary",
               alignItems: "center",
+              ml: "5%",
             }}
           >
             소식
@@ -27,6 +27,7 @@ const SubHeader = () => {
               bgcolor: "#FFFFFF",
               color: "text.secondary",
               alignItems: "center",
+              ml: "5%",
             }}
           >
             언론보도

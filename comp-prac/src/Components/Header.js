@@ -15,9 +15,15 @@ import {
   AccordionSummary,
   AccordionDetails,
   Accordion,
+  createTheme,
+  ThemeProvider,
+  Menu,
+  MenuItem,
+  Paper,
 } from "@mui/material";
 import jbnu from "../assets/jbnu.png";
-import { Menu, Home } from "@mui/icons-material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Home } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 const navigatorItems = [
@@ -48,10 +54,37 @@ const navigatorItems = [
   },
 ];
 
+const customTheme = createTheme({
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontSize: 20,
+          "&:hover": {
+            color: "skyblue",
+          },
+        },
+      },
+    },
+  },
+});
+
 const Header = () => {
   const HeaderMediaQuery = useMediaQuery("(min-width: 1200px)");
 
   const [sideOpen, setSideOpen] = React.useState(false);
+
+  const [anchorEl, setAnchorEl] = React.useState(true);
+
+  function handleClick(event) {
+    if (anchorEl !== event.currentTarget) {
+      setAnchorEl(event.currentTarget);
+    }
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
 
   const isShowNavigator = () => {
     return HeaderMediaQuery ? "visible" : "hidden";
@@ -96,9 +129,9 @@ const Header = () => {
                   fullWidth
                   sx={{
                     color: "black",
-                    display: "left",
+                    justifyContent: "left",
                   }}
-                  onClick={() => navigate("./article")}
+                  onClick={() => {}}
                 >
                   {content}
                 </Button>
@@ -107,6 +140,18 @@ const Header = () => {
           </Accordion>
         ))}
       </Card>
+    );
+  };
+
+  const MainNavigator = () => {
+    return (
+      <>
+        {navigatorItems.map((it) => (
+          <Grid item xs={2.4}>
+            <Typography variant="h6">{it.title}</Typography>
+          </Grid>
+        ))}
+      </>
     );
   };
 
@@ -150,7 +195,19 @@ const Header = () => {
               visibility: isShowNavigator,
             }}
           >
-            <Grid item xs={8}></Grid>
+            <ThemeProvider theme={customTheme}>
+              <Grid
+                container
+                xs={8}
+                sx={{ textAlign: "center", pr: "4%" }}
+                aria-owns={anchorEl ? "simple-menu" : undefined}
+                aria-haspopup="true"
+                onClick={handleClick}
+                onMouseOver={handleClick}
+              >
+                <MainNavigator />
+              </Grid>
+            </ThemeProvider>
             <Grid item xs={3}>
               <TextField
                 id="outlined-basic"
@@ -185,7 +242,7 @@ const Header = () => {
               onClick={() => {
                 setSideOpen(true);
               }}
-              aria-label="side_menu"
+              aria-label="side_MenuIcon"
               size="large"
               sx={{
                 display: "flex",
@@ -195,7 +252,7 @@ const Header = () => {
                 ml: "10%",
               }}
             >
-              <Menu />
+              <MenuIcon />
             </IconButton>
             <SwipeableDrawer
               anchor="right"
