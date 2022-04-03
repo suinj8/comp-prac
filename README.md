@@ -19,16 +19,16 @@ import { Button } from "@mui/material";
 너비와 높이는 50%만 padding-left를 5px만큼 주겠다는 의미이다.
 CSS문법과는 약간의 다른점이 있다.
 
-CSS                 React Prop
-margin              m
-margin-top          mt
-margin-right        mr
-margin-bottom       mb
-margin-left         ml
-margin-left, right  mx
-margin-top, bottom  my
-padding             p
-이후 margin과 동일   pt, pr 등등
+CSS                 React Prop  
+margin              m  
+margin-top          mt  
+margin-right        mr  
+margin-bottom       mb  
+margin-left         ml  
+margin-left, right  mx  
+margin-top, bottom  my  
+padding             p  
+이후 margin과 동일   pt, pr 등등  
 
 이 외에도 여러가지 사용 가능하다
 fontWeight, display, color, bgcolor, border 등 더 자세한 사항은 링크를 참조
