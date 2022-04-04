@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   CardMedia,
-  CssBaseline,
   Grid,
   Typography,
   Container,
@@ -23,7 +22,6 @@ export default function Album() {
   const dummyArticles = React.useContext(ArticleContext);
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
       <Divider />
       <Container sx={{ py: 5 }} fixed>
         <Grid container spacing={4}>

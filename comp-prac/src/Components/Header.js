@@ -17,14 +17,14 @@ import {
   Accordion,
   createTheme,
   ThemeProvider,
-  Menu,
-  MenuItem,
-  Paper,
+  Stack,
+  Collapse,
 } from "@mui/material";
 import jbnu from "../assets/jbnu.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Home } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 const navigatorItems = [
   {
@@ -58,8 +58,7 @@ const customTheme = createTheme({
   components: {
     MuiTypography: {
       styleOverrides: {
-        root: {
-          fontSize: 20,
+        h6: {
           "&:hover": {
             color: "skyblue",
           },
@@ -73,21 +72,14 @@ const Header = () => {
   const HeaderMediaQuery = useMediaQuery("(min-width: 1200px)");
 
   const [sideOpen, setSideOpen] = React.useState(false);
-
-  const [anchorEl, setAnchorEl] = React.useState(true);
-
-  function handleClick(event) {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
-    }
-  }
-
-  function handleClose() {
-    setAnchorEl(null);
-  }
+  const [collapseOpen, setCollapseOpen] = React.useState(false);
 
   const isShowNavigator = () => {
     return HeaderMediaQuery ? "visible" : "hidden";
+  };
+
+  const isShowPopupMenu = () => {
+    return HeaderMediaQuery ? "flex" : "none";
   };
 
   const navigate = useNavigate();
@@ -126,7 +118,6 @@ const Header = () => {
               >
                 <Button
                   variant="text"
-                  fullWidth
                   sx={{
                     color: "black",
                     justifyContent: "left",
@@ -148,7 +139,12 @@ const Header = () => {
       <>
         {navigatorItems.map((it) => (
           <Grid item xs={2.4}>
-            <Typography variant="h6">{it.title}</Typography>
+            <Button
+              onMouseOver={() => setCollapseOpen(true)}
+              sx={{ fontSize: "20px", color: "black" }}
+            >
+              {it.title}
+            </Button>
           </Grid>
         ))}
       </>
@@ -196,15 +192,7 @@ const Header = () => {
             }}
           >
             <ThemeProvider theme={customTheme}>
-              <Grid
-                container
-                xs={8}
-                sx={{ textAlign: "center", pr: "4%" }}
-                aria-owns={anchorEl ? "simple-menu" : undefined}
-                aria-haspopup="true"
-                onClick={handleClick}
-                onMouseOver={handleClick}
-              >
+              <Grid container xs={8} sx={{ textAlign: "center" }}>
                 <MainNavigator />
               </Grid>
             </ThemeProvider>
@@ -216,6 +204,9 @@ const Header = () => {
                 display="flex"
                 sx={{
                   width: "100%",
+                  display: "flex",
+                  justifyContent: "right",
+                  ml: "5%",
                 }}
               />
             </Grid>
@@ -229,7 +220,7 @@ const Header = () => {
                   flexDirection: "row",
                   width: "100%",
                   color: "black",
-                  ml: "20%",
+                  ml: "30%",
                 }}
               >
                 <Button>KR</Button>
@@ -266,6 +257,48 @@ const Header = () => {
         </Grid>
       </Box>
       <Divider />
+      <Collapse in={collapseOpen}>
+        <div className="popupMenu">
+          <Grid
+            container
+            sx={{
+              height: "200px",
+              position: "absolute",
+              zIndex: "5",
+              bgcolor: "#ececec",
+              display: isShowPopupMenu,
+            }}
+          >
+            <Grid item xs={1} />
+            <Grid container xs={10}>
+              <Grid container xs={8}>
+                {navigatorItems.map((it) => (
+                  <>
+                    <Divider orientation="vertical" />
+                    <Grid item xs>
+                      <Stack sx={{ height: "100%" }}>
+                        {it.contents.map((content) => (
+                          <Button
+                            sx={{ height: "20%", color: "black" }}
+                            onMouseOver={() => setCollapseOpen(true)}
+                            onMouseOut={() => setCollapseOpen(false)}
+                          >
+                            <Typography variant="subtitle2">
+                              {content}
+                            </Typography>
+                          </Button>
+                        ))}
+                      </Stack>
+                    </Grid>
+                  </>
+                ))}
+              </Grid>
+              <Divider orientation="vertical" />
+            </Grid>
+          </Grid>
+          <Divider />
+        </div>
+      </Collapse>
     </div>
   );
 };
