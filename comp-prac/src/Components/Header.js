@@ -56,9 +56,9 @@ const navigatorItems = [
 
 const customTheme = createTheme({
   components: {
-    MuiTypography: {
+    MuiButton: {
       styleOverrides: {
-        h6: {
+        root: {
           "&:hover": {
             color: "skyblue",
           },
@@ -219,7 +219,6 @@ const Header = () => {
                   display: "flex",
                   flexDirection: "row",
                   width: "100%",
-                  color: "black",
                   ml: "30%",
                 }}
               >

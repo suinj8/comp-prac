@@ -9,19 +9,17 @@ import {
   CardActionArea,
   Divider,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { ArticleContext } from "../App";
+import PageMoveButtons from "./PageMoveButtons";
 
 import jbnu from "../assets/jbnu.png";
-
-const theme = createTheme();
 
 export default function Album() {
   const navigate = useNavigate();
   const dummyArticles = React.useContext(ArticleContext);
   return (
-    <ThemeProvider theme={theme}>
+    <article>
       <Divider />
       <Container sx={{ py: 5 }} fixed>
         <Grid container spacing={4}>
@@ -64,6 +62,7 @@ export default function Album() {
           ))}
         </Grid>
       </Container>
-    </ThemeProvider>
+      <PageMoveButtons />
+    </article>
   );
 }

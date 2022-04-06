@@ -20,12 +20,7 @@ const Footer = () => {
       <Typography variant="h6" align="center" color="text.secondary">
         JBNU AI Center
       </Typography>
-      <Typography
-        variant="subtitle1"
-        align="center"
-        color="text.secondary"
-        component="p"
-      >
+      <Typography variant="subtitle1" align="center" color="text.secondary">
         컴퓨터공학부
       </Typography>
       <Copyright />
