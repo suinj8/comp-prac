@@ -112,3 +112,94 @@ startIcon은 버튼 앞에, endIcon은 버튼 끝에 아이콘을 삽입한다.
 아이콘은 MUI에서 제공하는 아이콘을 이용하면 된다.
 
 https://mui.com/components/buttons/
+
+
+### 5. createTheme, ThemeProvider
+
+MUI기본 테마 외에 테마를 만들고 적용시켜주는 컴포넌트이다.
+MUI는 기본 Primary테마로 파란색을, Secondary테마로 보라색이 지정되어 있는데
+이것을 원하는대로 바꿀 수 있다.
+전역에 지정할 수 있는 테마를 사용할 수도, 컴포넌트 별 지정할 수도 있다
+
+우선 createTheme이다.
+
+```javascript
+import { createTheme } from "@mui/material";
+import { purple } from "@mui/material/colors";
+
+const primaryColor = purple[600];
+const secondaryColor = purple[50];
+const dangerColor = purple[100];
+
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: primaryColor,
+    },
+    secondary: {
+      main: secondaryColor,
+    },
+    error: {
+      main: dangerColor,
+    },
+  },
+  components: {
+    MuiFab: {
+      styleOverrides: {
+        // root수준에서 바꾸면 모든 항목이 바뀐다. 조심히 사용
+        // 모든 Fab button이 바뀜
+        root: {
+          backgroundColor: "red",
+        },
+        // font-size가 small인 것에 대해 바뀜
+        sizeSmall: {
+          backgroundColor: "red",
+        },
+        // color:가 secondary로 지정된 것에 대해 바뀜
+        secondary: {
+          backgroundColor: "red",
+
+          // 마우스를 올렸을 때 바뀌는 색을 white로 지정
+          "&:hover": {
+            color: "white",
+          },
+        },
+      },
+    },
+  },
+});
+
+export default customTheme;
+```
+
+palette로 지정하면 sx Props로 색을 지정하지 않고
+컴포넌트 자체 color Props로 색을 지정할 수 있다.
+ex) <Typography color="primary"> Text </Typography>
+primary로 지정된 색깔로 Text가 나타나게 된다.
+이처럼 primary, secondary, error와 같이 상황별 색을 지정할 수 있게 된다.
+
+components 내부에 자신이 지정하고자 하는 component 이름을
+Mui + 컴포넌트이름 으로 선언하고 styleoverride가 가능하다.
+root값으로 스타일을 변경하면 지정한 모든 컴포넌트가 바뀌기 때문에 신중히 사용한다.
+그 외에 다른 조건들을 주어서 조건에 맞는 특정 컴포넌트의 스타일만도 바꿀 수 있다.
+추가로 hover는 마우스가 컴포넌트에 올라가 있을 때 발생하는 이벤트이고 그 때만 스타일을 
+바꿀 때 유용하게 사용할 수 있다.
+
+Color는 지정해서 사용할 수 있다. 매우 다양한 색을 제공하므로
+다양한 색을 사용하고자 한다면
+https://mui.com/customization/color/#main-content  링크에서 볼 수 있다.
+
+
+ProviderTheme은 자신이 만든 테마를 적용하고자 하는 컴포넌트 밖에 
+부모태그로 감싸주면 된다.
+
+```javascript
+import { ThemeProvider } from "@mui/material";
+
+<ThemeProvider theme={customTheme}>
+  <Button></Button>
+</ThemeProvider>
+```
+
+이렇게 사용하면 Button에만 자신이 만든 테마를 적용시킬 수 있다.
+
