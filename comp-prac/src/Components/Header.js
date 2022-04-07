@@ -55,7 +55,7 @@ const navigatorItems = [
 
 const customTheme = createTheme({
   components: {
-    MuiButton: {
+    MuiTypography: {
       styleOverrides: {
         root: {
           "&:hover": {
@@ -138,9 +138,9 @@ const Header = () => {
       <>
         {navigatorItems.map((it) => (
           <Grid item xs={2.4}>
-            <Button sx={{ fontSize: "20px", color: "black" }}>
+            <Typography sx={{ fontSize: "20px", color: "black" }}>
               {it.title}
-            </Button>
+            </Typography>
           </Grid>
         ))}
       </>
