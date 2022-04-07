@@ -1,14 +1,33 @@
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-import { Button } from "@mui/material";
+import { Card, CardMedia, Typography, Grow } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+import MainImage from "../assets/MainImage.jpg";
+
 const Home = () => {
-  const navigate = useNavigate();
   return (
     <div>
       <Header />
-      <Button onClick={() => navigate("./article")}>버튼</Button>
+      <article>
+        <Grow in="true" timeout={2500}>
+          <Typography
+            sx={{
+              position: "absolute",
+              color: "black",
+              left: "35%",
+              top: "20%",
+              fontSize: "50px",
+              textShadow: "4px 4px 4px gray",
+            }}
+          >
+            전북대학교 AI센터
+          </Typography>
+        </Grow>
+        <Card sx={{ width: "100%", bgcolor: "white" }}>
+          <CardMedia component="img" height="100%" image={MainImage} />
+        </Card>
+      </article>
       <Footer />
     </div>
   );
