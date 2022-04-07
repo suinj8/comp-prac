@@ -194,7 +194,7 @@ ProviderTheme은 자신이 만든 테마를 적용하고자 하는 컴포넌트 
 부모태그로 감싸주면 된다.
 
 ```javascript
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider, Button } from "@mui/material";
 
 <ThemeProvider theme={customTheme}>
   <Button></Button>
@@ -203,3 +203,68 @@ import { ThemeProvider } from "@mui/material";
 
 이렇게 사용하면 Button에만 자신이 만든 테마를 적용시킬 수 있다.
 
+
+### 6. Card, CardMedia, CardContent
+
+Mui에서 사진을담고 설명을 쓸 수 있다.
+전체적으로 Card안에 Media와 Content를 담는다.
+
+```javascript
+import { Card, CardMedia, CardContent, Typography } from '@mui/material;
+
+<Card sx={{ maxWidth: 345 }}>
+  <CardMedia
+    component="img"
+      height="140"
+      image="이미지파일 경로"
+      alt="사진 설명"
+    />
+  <CardContent>
+    <Typography gutterBottom variant="h5" component="div">
+      Lizard
+    </Typography>
+    <Typography variant="body2" color="text.secondary">
+      Lizards are a widespread group of squamate reptiles, with over 6,000
+      species, ranging across all continents except Antarctica
+    </Typography>
+  </CardContent>
+</Card>
+```
+
+CardContent의 component Props로 img, audio, video등을 올릴 수 있다.
+아래쪽에 CardContent로 부연설명을 추가해 줄 수 있다.
+
+![image](https://user-images.githubusercontent.com/90179555/161923223-46df81e0-6c0b-4314-9369-b3c587958a0d.png)
+
+https://mui.com/components/cards/
+
+
+### useMediaQuery
+
+CSS기능인 mediaQuery를 MUI에서 지원한다.
+반응형 웹을 구현할 때 사용된다.
+
+```javascript
+import { useMediaQuery } from '@mui/material;
+
+const mediaQuery = useMediaQuery("(min-width: 1200px)");
+```
+이렇게 사용하면 최소 너비가 1200px일 때 true를 리턴합니다.
+이것을 이용하여
+
+```javascript
+const isShowComponent = () => {
+  return mediaQuery ? "visible" : "hidden";
+};
+```
+mediaQuery가 true일때 visible을 주고 false일 때 hidden을 줌으로써
+사용하고자 하는 컴포넌트의 sx Props의 visibility값을 유동적으로 주면
+1200px 이상일 때는 컴포넌트가 보이고, 그보다 작아지면 컴포넌트가 숨겨지는 효과를 낼 수 있습니다.
+
+```javascript
+<Button sx={{ visibility : isShowComponent }}
+```
+
+Button 컴포넌트가 보여졌다 사라졌다 하는 효과를 낼 수 있습니다.
+
+https://mui.com/components/use-media-query/
