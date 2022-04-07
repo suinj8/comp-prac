@@ -1,7 +1,6 @@
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { Card, CardMedia, Typography, Grow } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 import MainImage from "../assets/MainImage.jpg";
 
@@ -15,13 +14,13 @@ const Home = () => {
             sx={{
               position: "absolute",
               color: "black",
-              left: "35%",
+              left: "33%",
               top: "20%",
               fontSize: "50px",
               textShadow: "4px 4px 4px gray",
             }}
           >
-            전북대학교 AI센터
+            전북대학교 AI 센터
           </Typography>
         </Grow>
         <Card sx={{ width: "100%", bgcolor: "white" }}>
