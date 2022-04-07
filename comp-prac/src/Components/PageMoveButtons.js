@@ -25,7 +25,7 @@ const PageMoveButtons = () => {
         <Button>2</Button>
         <Button>3</Button>
         <Button>4</Button>
-        <Button>>></Button>
+        <Button>&gt;&gt;</Button>
       </ButtonGroup>
     </Box>
   );

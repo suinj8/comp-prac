@@ -18,7 +18,6 @@ import {
   createTheme,
   ThemeProvider,
   Stack,
-  Collapse,
 } from "@mui/material";
 import jbnu from "../assets/jbnu.png";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -72,14 +71,14 @@ const Header = () => {
   const HeaderMediaQuery = useMediaQuery("(min-width: 1200px)");
 
   const [sideOpen, setSideOpen] = React.useState(false);
-  const [collapseOpen, setCollapseOpen] = React.useState(false);
+  const [subMenuOpen, setSubMenuOpen] = React.useState(false);
 
   const isShowNavigator = () => {
     return HeaderMediaQuery ? "visible" : "hidden";
   };
 
   const isShowPopupMenu = () => {
-    return HeaderMediaQuery ? "flex" : "none";
+    return HeaderMediaQuery && subMenuOpen ? "flex" : "none";
   };
 
   const navigate = useNavigate();
@@ -139,10 +138,7 @@ const Header = () => {
       <>
         {navigatorItems.map((it) => (
           <Grid item xs={2.4}>
-            <Button
-              onMouseOver={() => setCollapseOpen(true)}
-              sx={{ fontSize: "20px", color: "black" }}
-            >
+            <Button sx={{ fontSize: "20px", color: "black" }}>
               {it.title}
             </Button>
           </Grid>
@@ -192,7 +188,12 @@ const Header = () => {
             }}
           >
             <ThemeProvider theme={customTheme}>
-              <Grid container xs={8} sx={{ textAlign: "center" }}>
+              <Grid
+                onMouseEnter={() => setSubMenuOpen(true)}
+                container
+                xs={8}
+                sx={{ textAlign: "center" }}
+              >
                 <MainNavigator />
               </Grid>
             </ThemeProvider>
@@ -256,48 +257,39 @@ const Header = () => {
         </Grid>
       </Box>
       <Divider />
-      <Collapse in={collapseOpen}>
-        <div className="popupMenu">
-          <Grid
-            container
-            sx={{
-              height: "200px",
-              position: "absolute",
-              zIndex: "5",
-              bgcolor: "#ececec",
-              display: isShowPopupMenu,
-            }}
-          >
-            <Grid item xs={1} />
-            <Grid container xs={10}>
-              <Grid container xs={8}>
-                {navigatorItems.map((it) => (
-                  <>
-                    <Divider orientation="vertical" />
-                    <Grid item xs>
-                      <Stack sx={{ height: "100%" }}>
-                        {it.contents.map((content) => (
-                          <Button
-                            sx={{ height: "20%", color: "black" }}
-                            onMouseOver={() => setCollapseOpen(true)}
-                            onMouseOut={() => setCollapseOpen(false)}
-                          >
-                            <Typography variant="subtitle2">
-                              {content}
-                            </Typography>
-                          </Button>
-                        ))}
-                      </Stack>
-                    </Grid>
-                  </>
-                ))}
-              </Grid>
-              <Divider orientation="vertical" />
-            </Grid>
+      <Grid
+        container
+        sx={{
+          display: isShowPopupMenu,
+          height: "200px",
+          position: "absolute",
+          zIndex: "5",
+          bgcolor: "#ececec",
+        }}
+        onMouseLeave={() => setSubMenuOpen(false)}
+      >
+        <Grid item xs={1} />
+        <Grid container xs={10}>
+          <Grid container xs={8}>
+            {navigatorItems.map((it) => (
+              <>
+                <Divider orientation="vertical" />
+                <Grid item xs>
+                  <Stack sx={{ height: "100%" }}>
+                    {it.contents.map((content) => (
+                      <Button sx={{ height: "20%", color: "black" }}>
+                        <Typography variant="subtitle2">{content}</Typography>
+                      </Button>
+                    ))}
+                  </Stack>
+                </Grid>
+              </>
+            ))}
           </Grid>
-          <Divider />
-        </div>
-      </Collapse>
+          <Divider orientation="vertical" />
+        </Grid>
+      </Grid>
+      <Divider />
     </div>
   );
 };

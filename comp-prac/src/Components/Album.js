@@ -44,7 +44,7 @@ export default function Album() {
                   >
                     {it.title}
                   </Typography>
-                  <CardMedia component="img" image={jbnu} alt="random" />
+                  <CardMedia component="img" image={jbnu} alt="article" />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography>{it.content}</Typography>
                   </CardContent>
