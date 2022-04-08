@@ -53,6 +53,9 @@ container Grid는 자신이 차지하고 있는 가로를 12등분 하여 item G
 추가로 item Grid를 더 주게된다면 아래줄로 내려가 다시 12등분하여 설정해준 값 만큼 가지게 된다.
 여기서 xs값을 주지 않으면 default값인 auto로 설정되어 n분의 1값 만큼 갖게된다.
 
+![image](https://user-images.githubusercontent.com/90179555/162393735-bed6a773-191c-40c3-b36a-973f2823e6ab.png)
+
+
 spacing은 item 컴포넌트들 사이에 공백을 주는 props이다.
 
 이것 역시 sx로 너비나 높이를 조정해 줄 수 있다.
@@ -204,7 +207,20 @@ import { ThemeProvider, Button } from "@mui/material";
 이렇게 사용하면 Button에만 자신이 만든 테마를 적용시킬 수 있다.
 
 
-### 6. Card, CardMedia, CardContent Component
+### 6. Typography
+
+기본적인 Text를 담고 표현하는 컴포넌트.
+기본적으로 HTML에서 제공하는 h1~h6를 제공합니다.
+그 외에도 몇가지 더 제공합니다.
+
+![image](https://user-images.githubusercontent.com/90179555/162397360-c6347a41-09e5-4fe3-8d1f-545f893600c2.png)
+
+props로 align, variant, noWrap 등이 존재한다.
+align은 text를 정렬, variant는 h1~h6값을 부여, noWrap true로 하면 줄바꿈 되지 않습니다.
+
+https://mui.com/components/typography/#main-content
+
+### 7. Card, CardMedia, CardContent Component
 
 Mui에서 사진을담고 설명을 쓸 수 있다.
 전체적으로 Card안에 Media와 Content를 담는다.
@@ -231,7 +247,7 @@ import { Card, CardMedia, CardContent, Typography } from '@mui/material;
 </Card>
 ```
 
-CardContent의 component Props로 img, audio, video등을 올릴 수 있다.
+CardMedia의 component Props로 img, audio, video등을 올릴 수 있다.
 아래쪽에 CardContent로 부연설명을 추가해 줄 수 있다.
 
 ![image](https://user-images.githubusercontent.com/90179555/161923223-46df81e0-6c0b-4314-9369-b3c587958a0d.png)
@@ -239,7 +255,7 @@ CardContent의 component Props로 img, audio, video등을 올릴 수 있다.
 https://mui.com/components/cards/
 
 
-### useMediaQuery Component
+### 8. useMediaQuery Component
 
 CSS기능인 mediaQuery를 MUI에서 지원한다.
 반응형 웹을 구현할 때 사용된다.
