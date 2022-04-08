@@ -27,7 +27,7 @@ fontWeight, display, color, bgcolor, border 등 더 자세한 사항은 링크�
 https://mui.com/system/the-sx-prop/
 
 
-### 2. Grid
+### 2. Grid Component
 
 기본적으로 틀을 만들어주는 레이아웃 컴포넌트이다.
 props로 container(item), spacing, xs, sx 등이 있다.
@@ -60,7 +60,7 @@ spacing은 item 컴포넌트들 사이에 공백을 주는 props이다.
 https://mui.com/components/grid/
 
 
-### 3. Stack
+### 3. Stack Component
 
 Grid와 마찬가지로 자주 쓰이는 레이아웃 컴포넌트이다.
 말그대로 스택처럼 자식 컴포넌트들을 배치하게 된다.
@@ -89,7 +89,7 @@ divider로 자식 컴포넌트 간 구분을 확실하게 해줄 수 있다.
 https://mui.com/components/stack/
 
 
-### 4. Button
+### 4. Button Component
 
 가장 흔하게 사용되는 Button 컴포넌트 이다.
 
@@ -114,7 +114,7 @@ startIcon은 버튼 앞에, endIcon은 버튼 끝에 아이콘을 삽입한다.
 https://mui.com/components/buttons/
 
 
-### 5. createTheme, ThemeProvider
+### 5. createTheme, ThemeProvider Component
 
 MUI기본 테마 외에 테마를 만들고 적용시켜주는 컴포넌트이다.
 MUI는 기본 Primary테마로 파란색을, Secondary테마로 보라색이 지정되어 있는데
@@ -204,7 +204,7 @@ import { ThemeProvider, Button } from "@mui/material";
 이렇게 사용하면 Button에만 자신이 만든 테마를 적용시킬 수 있다.
 
 
-### 6. Card, CardMedia, CardContent
+### 6. Card, CardMedia, CardContent Component
 
 Mui에서 사진을담고 설명을 쓸 수 있다.
 전체적으로 Card안에 Media와 Content를 담는다.
@@ -239,7 +239,7 @@ CardContent의 component Props로 img, audio, video등을 올릴 수 있다.
 https://mui.com/components/cards/
 
 
-### useMediaQuery
+### useMediaQuery Component
 
 CSS기능인 mediaQuery를 MUI에서 지원한다.
 반응형 웹을 구현할 때 사용된다.
