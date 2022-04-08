@@ -49,7 +49,6 @@ const Home = () => {
 
         <ThemeProvider theme={customTheme}>
           <Grow in="true" timeout={2500}>
-            ``
             <Box
               sx={{
                 display: "flex",
