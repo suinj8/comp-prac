@@ -54,7 +54,7 @@ const Announcement = () => {
       <SubHeader main="소식" sub="공지사항" />
       <div
         style={{
-          height: 630,
+          height: 630.5,
           width: "85%",
           paddingTop: "3%",
           paddingBottom: "3%",
