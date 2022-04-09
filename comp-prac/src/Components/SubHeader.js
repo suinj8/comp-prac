@@ -1,6 +1,6 @@
 import { Divider, Grid, Typography } from "@mui/material";
 
-const SubHeader = () => {
+const SubHeader = ({ main, sub }) => {
   return (
     <div>
       <Grid container>
@@ -16,7 +16,7 @@ const SubHeader = () => {
               ml: "5%",
             }}
           >
-            소식
+            {main}
           </Typography>
         </Grid>
         <Divider orientation="vertical" flexItem />
@@ -30,11 +30,12 @@ const SubHeader = () => {
               ml: "5%",
             }}
           >
-            언론보도
+            {sub}
           </Typography>
         </Grid>
         <Divider orientation="vertical" flexItem />
       </Grid>
+      <Divider />
     </div>
   );
 };

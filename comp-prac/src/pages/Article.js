@@ -8,7 +8,7 @@ const Article = () => {
   return (
     <div className="articleHeader">
       <Header />
-      <SubHeader />
+      <SubHeader main="소식" sub="소식통" />
       <article>
         <Album />
       </article>

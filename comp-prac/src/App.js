@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Article from "./pages/Article";
 import ArticleItem from "./Components/ArticleItem";
+import Announcement from "./pages/Announcement";
 
 const dummyCards = [
   { id: 1, title: "언론보도", content: "1번 컨텐츠", date: "220322" },
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/article" element={<Article />} />
           <Route path="/article/:id" element={<ArticleItem />} />
+          <Route path="/announcement" element={<Announcement />} />
         </Routes>
       </BrowserRouter>
     </ArticleContext.Provider>
