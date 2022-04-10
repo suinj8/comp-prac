@@ -18,6 +18,7 @@ import {
   createTheme,
   ThemeProvider,
   Stack,
+  Collapse,
 } from "@mui/material";
 import jbnu from "../assets/jbnu.png";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -72,6 +73,7 @@ const Header = () => {
 
   const [sideOpen, setSideOpen] = React.useState(false);
   const [subMenuOpen, setSubMenuOpen] = React.useState(false);
+  const [collapseOpen, setCollapseOpen] = React.useState(false);
 
   const isShowNavigator = () => {
     return HeaderMediaQuery ? "visible" : "hidden";
@@ -189,7 +191,7 @@ const Header = () => {
           >
             <ThemeProvider theme={customTheme}>
               <Grid
-                onMouseEnter={() => setSubMenuOpen(true)}
+                onMouseEnter={() => setCollapseOpen(true)}
                 container
                 xs={8}
                 sx={{ textAlign: "center" }}
@@ -257,39 +259,41 @@ const Header = () => {
         </Grid>
       </Box>
       <Divider />
-      <Grid
-        container
-        sx={{
-          display: isShowPopupMenu,
-          height: "200px",
-          position: "absolute",
-          zIndex: "5",
-          bgcolor: "#ececec",
-        }}
-        onMouseLeave={() => setSubMenuOpen(false)}
-      >
-        <Grid item xs={1} />
-        <Grid container xs={10}>
-          <Grid container xs={8}>
-            {navigatorItems.map((it) => (
-              <>
-                <Divider orientation="vertical" />
-                <Grid item xs>
-                  <Stack sx={{ height: "100%" }}>
-                    {it.contents.map((content) => (
-                      <Button sx={{ height: "20%", color: "black" }}>
-                        <Typography variant="subtitle2">{content}</Typography>
-                      </Button>
-                    ))}
-                  </Stack>
-                </Grid>
-              </>
-            ))}
+      <Collapse in={collapseOpen} timeout={500}>
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            height: "200px",
+            // position: "absolute",
+            zIndex: "5",
+            bgcolor: "#ececec",
+          }}
+          onMouseLeave={() => setCollapseOpen(false)}
+        >
+          <Grid item xs={1} />
+          <Grid container xs={10}>
+            <Grid container xs={8}>
+              {navigatorItems.map((it) => (
+                <>
+                  <Divider orientation="vertical" />
+                  <Grid item xs>
+                    <Stack sx={{ height: "100%" }}>
+                      {it.contents.map((content) => (
+                        <Button sx={{ height: "20%", color: "black" }}>
+                          <Typography variant="subtitle2">{content}</Typography>
+                        </Button>
+                      ))}
+                    </Stack>
+                  </Grid>
+                </>
+              ))}
+            </Grid>
+            <Divider orientation="vertical" />
           </Grid>
-          <Divider orientation="vertical" />
         </Grid>
-      </Grid>
-      <Divider />
+        <Divider />
+      </Collapse>
     </div>
   );
 };
