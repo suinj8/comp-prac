@@ -1,7 +1,7 @@
-import Header from "../Components/Header";
-import Album from "../Components/Album";
-import SubHeader from "../Components/SubHeader";
-import Footer from "../Components/Footer";
+import Header from "../components/Header";
+import Album from "../components/Album";
+import SubHeader from "../components/SubHeader";
+import Footer from "../components/Footer";
 import "../App.css";
 
 const Article = () => {

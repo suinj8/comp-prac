@@ -1,6 +1,6 @@
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
-import SubHeader from "../Components/SubHeader";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import SubHeader from "../components/SubHeader";
 
 import { Grid, Box, Button, Typography } from "@mui/material";
 

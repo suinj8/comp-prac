@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Article from "./pages/Article";
-import ArticleItem from "./Components/ArticleItem";
+import ArticleItem from "./components/ArticleItem";
 import Announcement from "./pages/Announcement";
 import Apply from "./pages/Apply";
 
