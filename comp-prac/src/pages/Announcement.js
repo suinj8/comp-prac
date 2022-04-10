@@ -62,7 +62,6 @@ const Announcement = () => {
           paddingBottom: "3%",
           paddingLeft: "7.5%",
           paddingRight: "7.5%",
-
           display: "flex",
         }}
       >
@@ -73,6 +72,17 @@ const Announcement = () => {
           rowsPerPageOptions={[3]}
           sx={{ justifyContent: "center" }}
           disableColumnSelector
+          sortingOrder={["desc", "asc"]}
+          initialState={{
+            sorting: {
+              sortModel: [
+                {
+                  field: "date",
+                  sort: "desc",
+                },
+              ],
+            },
+          }}
           onRowClick={(params) => alert(`${params.id}번째 cell 선택됨`)}
         />
       </div>
