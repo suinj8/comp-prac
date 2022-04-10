@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Article from "./pages/Article";
 import ArticleItem from "./Components/ArticleItem";
 import Announcement from "./pages/Announcement";
+import Apply from "./pages/Apply";
 
 const dummyCards = [
   { id: 1, title: "언론보도", content: "1번 컨텐츠", date: "220322" },
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/article" element={<Article />} />
           <Route path="/article/:id" element={<ArticleItem />} />
           <Route path="/announcement" element={<Announcement />} />
+          <Route path="/apply" element={<Apply />} />
         </Routes>
       </BrowserRouter>
     </ArticleContext.Provider>
