@@ -1,5 +1,11 @@
 import { Typography, Link, Box } from "@mui/material";
 
+/**
+ *@author Suin-Jeong, suin8@jbnu.ac.kr
+ *@date 2022-04-13
+ *@description Footer의 최하단 저작권 표기
+ */
+
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -13,6 +19,12 @@ function Copyright() {
     </Typography>
   );
 }
+
+/**
+ *@author Suin-Jeong, suin8@jbnu.ac.kr
+ *@date 2022-04-13
+ *@description 메인페이지 Footer
+ */
 
 const Footer = () => {
   return (
