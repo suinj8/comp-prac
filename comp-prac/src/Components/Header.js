@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import {
   Grid,
   Card,
@@ -11,12 +11,10 @@ import {
   Divider,
   useMediaQuery,
   Typography,
-  SwipeableDrawer,
+  Drawer,
   AccordionSummary,
   AccordionDetails,
   Accordion,
-  createTheme,
-  ThemeProvider,
   Stack,
   Collapse,
 } from "@mui/material";
@@ -26,7 +24,15 @@ import { Home } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-const navigatorItems = [
+/**
+ *@author Suin-Jeong, suin8@jbnu.ac.kr
+ *@date 2022-04-13
+ *@description 상단에 고정적으로 위치하는 Header
+ *             로고, Main Navigator, 검색창,
+ *             KR/EN 버튼, Side Navigator 포함
+ */
+
+const mainMenuItems = [
   {
     id: 1,
     title: "소개",
@@ -54,38 +60,25 @@ const navigatorItems = [
   },
 ];
 
-const customTheme = createTheme({
-  components: {
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          "&:hover": {
-            color: "skyblue",
-          },
-        },
-      },
-    },
-  },
-});
-
 const Header = () => {
-  const HeaderMediaQuery = useMediaQuery("(min-width: 1200px)");
-
-  const [sideOpen, setSideOpen] = React.useState(false);
-  const [subMenuOpen, setSubMenuOpen] = React.useState(false);
-  const [collapseOpen, setCollapseOpen] = React.useState(false);
-
-  const isShowNavigator = () => {
-    return HeaderMediaQuery ? "visible" : "hidden";
-  };
-
-  const isShowPopupMenu = () => {
-    return HeaderMediaQuery && subMenuOpen ? "flex" : "none";
-  };
+  const mainMenuMediaQuery = useMediaQuery("(min-width: 1200px)");
+  const [sideMenuOpen, setSideMenuOpen] = useState(false);
+  const [collapseMenuOpen, setCollapseMenuOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  const DrawerItems = () => {
+  const isShowMainMenu = () => {
+    return mainMenuMediaQuery ? "visible" : "hidden";
+  };
+
+  /**
+   *@author Suin-Jeong, suin8@jbnu.ac.kr
+   *@date 2022-04-13
+   *@description 오른쪽 사이드 메뉴
+   *             Accordion을 이용하여 구현
+   */
+
+  const SideMenu = () => {
     return (
       <Card
         sx={{
@@ -93,6 +86,7 @@ const Header = () => {
           width: "320px",
           bgcolor: "#0277BD",
           color: "white",
+          borderRadius: "0",
         }}
       >
         <CardMedia sx={{ ml: "7px", my: "7px" }}>
@@ -100,7 +94,7 @@ const Header = () => {
             <Home sx={{ color: "white" }} />
           </IconButton>
         </CardMedia>
-        {navigatorItems.map((it) => (
+        {mainMenuItems.map((it) => (
           <Accordion
             sx={{
               bgcolor: "#0277BD",
@@ -135,10 +129,17 @@ const Header = () => {
     );
   };
 
-  const MainNavigator = () => {
+  /**
+   *@author Suin-Jeong, suin8@jbnu.ac.kr
+   *@date 2022-04-13
+   *@description 상단 헤더에서 MainMenu 구성부
+   *             onMouse시 collapseMenu가 내려옴
+   */
+
+  const MainMenu = () => {
     return (
       <>
-        {navigatorItems.map((it) => (
+        {mainMenuItems.map((it) => (
           <Grid item xs={2.4}>
             <Typography sx={{ fontSize: "20px", color: "black" }}>
               {it.title}
@@ -149,8 +150,18 @@ const Header = () => {
     );
   };
 
+  /**
+   *@author Suin-Jeong, suin8@jbnu.ac.kr
+   *@date 2022-04-13
+   *@description Header컴포넌트 전체 구성부
+   *             헤더를 Grid로(총 12) 세분화
+   *             (1 Logo , 10, 1 SideMenuIcon)
+   *             중간 10을 다시 나누었음
+   *             (8 MainMenu, 3 Search, 1 KR/EN 버튼)
+   */
+
   return (
-    <div className="header">
+    <div>
       <Box
         sx={{
           display: "flex",
@@ -186,19 +197,17 @@ const Header = () => {
               alignItems: "center",
               width: "100%",
               display: "flex",
-              visibility: isShowNavigator,
+              visibility: isShowMainMenu,
             }}
           >
-            <ThemeProvider theme={customTheme}>
-              <Grid
-                onMouseEnter={() => setCollapseOpen(true)}
-                container
-                xs={8}
-                sx={{ textAlign: "center" }}
-              >
-                <MainNavigator />
-              </Grid>
-            </ThemeProvider>
+            <Grid
+              onMouseEnter={() => setCollapseMenuOpen(true)}
+              container
+              xs={8}
+              sx={{ textAlign: "center" }}
+            >
+              <MainMenu />
+            </Grid>
             <Grid item xs={3}>
               <TextField
                 id="outlined-basic"
@@ -233,7 +242,7 @@ const Header = () => {
           <Grid item xs={1}>
             <IconButton
               onClick={() => {
-                setSideOpen(true);
+                setSideMenuOpen(true);
               }}
               aria-label="side_MenuIcon"
               size="large"
@@ -247,34 +256,33 @@ const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <SwipeableDrawer
+            <Drawer
               anchor="right"
-              open={sideOpen}
-              onClose={() => setSideOpen(false)}
+              open={sideMenuOpen}
+              onClose={() => setSideMenuOpen(false)}
               onOpen={() => {}}
             >
-              <DrawerItems />
-            </SwipeableDrawer>
+              <SideMenu />
+            </Drawer>
           </Grid>
         </Grid>
       </Box>
       <Divider />
-      <Collapse in={collapseOpen} timeout={500}>
+      <Collapse in={collapseMenuOpen} timeout={500}>
         <Grid
           container
           sx={{
             display: "flex",
             height: "200px",
-            // position: "absolute",
             zIndex: "5",
             bgcolor: "#ececec",
           }}
-          onMouseLeave={() => setCollapseOpen(false)}
+          onMouseLeave={() => setCollapseMenuOpen(false)}
         >
           <Grid item xs={1} />
           <Grid container xs={10}>
             <Grid container xs={8}>
-              {navigatorItems.map((it) => (
+              {mainMenuItems.map((it) => (
                 <>
                   <Divider orientation="vertical" />
                   <Grid item xs>
